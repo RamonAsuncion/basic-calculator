@@ -1,4 +1,7 @@
-import math
+# Fix wrong input for operation return
+# Accept fractions written as 1/2
+# Return string on how to read it?
+# numerator1, denominator1 = map(float, first_number.split('/'))        - Fraction
 
 
 def calculator(num1,  operation, num2):
@@ -14,15 +17,10 @@ def calculator(num1,  operation, num2):
             result_value = num1 / num2
         # checks if divides by 0
         except ZeroDivisionError:
-            # returns "undefined" in terminal divide by 0
             result_value = 'Undefined'
             print(result_value)
-            # Calls the recalculate function once printed
             recalculate()
             exit()
-
-    elif operation == "sqrt":
-        result_value = math.sqrt(num1)
     else:
         main()
     return result_value
@@ -43,61 +41,48 @@ def format_value_result_calculation(result_value):
 def get_first_number():
     try:
         # Gets the first number
-        first_number = float(input('Enter first number: '))
+        return float(input('Enter first number: '))
     except ValueError:
-        # Checks if the input is correct
-        print("Wrong input")
-        # Calls the function again if wrong input
+        # If not a integer will recall the function
+        print("Wrong input, please re-enter.")
         get_first_number()
-        exit()
-        # returns the user input for first number
-    return first_number
 
 
 def get_operation():
     try:
         # Gets the operation
-        operation = input('Enter the operation: +,-,*,/, sqrt: ')
+        return input('Enter the operation: +,-,*, or /: ')
     except ValueError:
         print("Wrong input")
         # Calls the function again if wrong input
         get_operation()
-        exit()
-        # returns the user input for operation
-    return operation
 
 
 def get_second_number():
     try:
         # gets the second number
-        second_number = float(input('Enter second number: '))
+        return float(input('Enter second number: '))
     except ValueError:
-        print("Wrong input")
-        # Calls the function again if wrong input
+        # If not a integer will recall the function
+        print("Wrong input, please re-enter.")
         get_second_number()
-        exit()
-        # returns the user input for second number
-    return second_number
 
 
+# Once the result is printed in terminal ask user if wants to continue
 def recalculate():
-    # Prints the code below into terminal
     choice = input('Would you like to continue? (Y for Yes / N for No): ')
-    # N or n works and stops the script
     if choice.lower() == 'n':
         exit()
-    # Y or y works and stops the script
     elif choice.lower() == 'y':
-        # Calls the main function
         main()
+        exit()
     else:
-        # Wrong input calls the recalculate function again
         recalculate()
 
 
 def main():
-    operation = get_operation()
     num1 = get_first_number()
+    operation = get_operation()
     num2 = get_second_number()
     result_value = calculator(num1, operation, num2)
     format_value_result_calculation(result_value)
