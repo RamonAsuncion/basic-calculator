@@ -2,19 +2,23 @@
 # Accept fractions written as 1/2
 # Return string on how to read it?
 # numerator1, denominator1 = map(float, first_number.split('/'))        - Fraction
+# have to fix when it treturns wrong input and recalls the method it still has the type from before
 
 
 def calculator(num1,  operation, num2):
-    result_value = ''
     if operation == '+':
-        result_value = num1 + num2
+        return num1 + num2
     elif operation == '-':
-        result_value = num1 - num2
+        return num1 - num2
     elif operation == '*':
-        result_value = num1 * num2
+        return num1 * num2
+    elif operation == '^' or operation == '**':
+        return num1 ** num2
+    elif operation == '%':
+        return num1 % num2
     elif operation == '/':
         try:
-            result_value = num1 / num2
+            return num1 / num2
         # checks if divides by 0
         except ZeroDivisionError:
             result_value = 'Undefined'
@@ -23,7 +27,6 @@ def calculator(num1,  operation, num2):
             exit()
     else:
         main()
-    return result_value
 
 
 def format_value_result_calculation(result_value):
@@ -44,18 +47,16 @@ def get_first_number():
         return float(input('Enter first number: '))
     except ValueError:
         # If not a integer will recall the function
-        print("Wrong input, please re-enter.")
+        print('Wrong input, please re-enter.')
         get_first_number()
 
 
 def get_operation():
-    try:
-        # Gets the operation
-        return input('Enter the operation: +,-,*, or /: ')
-    except ValueError:
-        print("Wrong input")
-        # Calls the function again if wrong input
-        get_operation()
+    # Gets the operation
+    return input('Enter the operation: +,-,*, ^ (**), %, or /: ')
+
+    # print("Wrong input")
+    # get_operation()
 
 
 def get_second_number():
@@ -64,7 +65,7 @@ def get_second_number():
         return float(input('Enter second number: '))
     except ValueError:
         # If not a integer will recall the function
-        print("Wrong input, please re-enter.")
+        print('Wrong input, please re-enter.')
         get_second_number()
 
 
@@ -89,5 +90,5 @@ def main():
     recalculate()
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
