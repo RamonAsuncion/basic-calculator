@@ -1,24 +1,24 @@
 # Fix wrong input for operation return
-# Accept fractions written as 1/2
+# Accept fractions written as 1/2 and get the gcd to add
 # Return string on how to read it?
-# numerator1, denominator1 = map(float, first_number.split('/'))        - Fraction
 # have to fix when it treturns wrong input and recalls the method it still has the type from before
+from fractions import Fraction
 
 
-def calculator(num1,  operation, num2):
+def calculator(number1,  operation, number2):
     if operation == '+':
-        return num1 + num2
+        return number1 + number2
     elif operation == '-':
-        return num1 - num2
+        return number1 - number2
     elif operation == '*':
-        return num1 * num2
+        return number1 * number2
     elif operation == '^' or operation == '**':
-        return num1 ** num2
+        return number1 ** number2
     elif operation == '%':
-        return num1 % num2
+        return number1 % number2
     elif operation == '/':
         try:
-            return num1 / num2
+            return number1 / number2
         # checks if divides by 0
         except ZeroDivisionError:
             result_value = 'Undefined'
@@ -29,7 +29,7 @@ def calculator(num1,  operation, num2):
         main()
 
 
-def format_value_result_calculation(result_value):
+def format_decimal_numbers(result_value):
     # add commas to each 3 digits
     if (result_value >= 1000):
         print('Result: {:,.0f}'.format(result_value))
@@ -43,28 +43,19 @@ def format_value_result_calculation(result_value):
 
 def get_first_number():
     try:
-        # Gets the first number
         return float(input('Enter first number: '))
     except ValueError:
-        # If not a integer will recall the function
         print('Wrong input, please re-enter.')
-        get_first_number()
 
 
 def get_operation():
-    # Gets the operation
     return input('Enter the operation: +,-,*, ^ (**), %, or /: ')
-
-    # print("Wrong input")
-    # get_operation()
 
 
 def get_second_number():
     try:
-        # gets the second number
         return float(input('Enter second number: '))
     except ValueError:
-        # If not a integer will recall the function
         print('Wrong input, please re-enter.')
         get_second_number()
 
@@ -82,11 +73,11 @@ def recalculate():
 
 
 def main():
-    num1 = get_first_number()
+    number1 = get_first_number()
     operation = get_operation()
-    num2 = get_second_number()
-    result_value = calculator(num1, operation, num2)
-    format_value_result_calculation(result_value)
+    number2 = get_second_number()
+    result_value = calculator(number1, operation, number2)
+    format_decimal_numbers(result_value)
     recalculate()
 
 
