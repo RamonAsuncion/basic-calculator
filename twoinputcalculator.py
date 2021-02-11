@@ -3,6 +3,7 @@
 # Return string on how to read it?
 # have to fix when it treturns wrong input and recalls the method it still has the type from before
 from fractions import Fraction
+import math
 
 
 def calculator(number1,  operation, number2):
@@ -42,10 +43,13 @@ def format_decimal_numbers(result_value):
 
 
 def get_first_number():
-    try:
-        return float(input('Enter first number: '))
-    except ValueError:
-        print('Wrong input, please re-enter.')
+    while True:
+        try:
+            return Fraction(float(input('Enter first number: ')))
+
+        except ValueError:
+            print('Wrong input, please re-enter.')
+            continue
 
 
 def get_operation():
@@ -53,11 +57,12 @@ def get_operation():
 
 
 def get_second_number():
-    try:
-        return float(input('Enter second number: '))
-    except ValueError:
-        print('Wrong input, please re-enter.')
-        get_second_number()
+    while True:
+        try:
+            return float(input('Enter second number: '))
+        except ValueError:
+            print('Wrong input, please re-enter.')
+            continue
 
 
 # Once the result is printed in terminal ask user if wants to continue
