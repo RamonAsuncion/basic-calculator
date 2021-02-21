@@ -1,22 +1,23 @@
-# Fix wrong input for operation return
 # Accept fractions written as 1/2 and get the gcd to add
 # Return string on how to read it?
-# have to fix when it treturns wrong input and recalls the method it still has the type from before
 from fractions import Fraction
 import math
+import decimal
 
 
-def calculator(number1,  operation, number2):
+def calculation_of_two_numbers(number1,  operation, number2):
     if operation == '+':
         return number1 + number2
     elif operation == '-':
         return number1 - number2
     elif operation == '*':
         return number1 * number2
-    elif operation == '^' or operation == '**':
+    elif operation == '**':
         return number1 ** number2
     elif operation == '%':
         return number1 % number2
+    elif operation == '//':
+        return number1 // number2  
     elif operation == '/':
         try:
             return number1 / number2
@@ -45,15 +46,14 @@ def format_decimal_numbers(result_value):
 def get_first_number():
     while True:
         try:
-            return Fraction(float(input('Enter first number: ')))
-
+            return float(input('Enter first number: '))
         except ValueError:
             print('Wrong input, please re-enter.')
             continue
 
 
 def get_operation():
-    return input('Enter the operation: +,-,*, ^ (**), %, or /: ')
+    return input('Enter the operation: +,-,*, ^ (**), %, //, or /: ')
 
 
 def get_second_number():
@@ -63,7 +63,6 @@ def get_second_number():
         except ValueError:
             print('Wrong input, please re-enter.')
             continue
-
 
 # Once the result is printed in terminal ask user if wants to continue
 def recalculate():
@@ -81,7 +80,7 @@ def main():
     number1 = get_first_number()
     operation = get_operation()
     number2 = get_second_number()
-    result_value = calculator(number1, operation, number2)
+    result_value = calculation_of_two_numbers(number1, operation, number2)
     format_decimal_numbers(result_value)
     recalculate()
 
