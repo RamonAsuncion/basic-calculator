@@ -1,23 +1,29 @@
 # Accept fractions written as 1/2 and get the gcd to add
 # Return string on how to read it?
+
 from fractions import Fraction
-import math
-import decimal
 
 
 def calculation_of_two_numbers(number1,  operation, number2):
+    # Addition
     if operation == '+':
         return number1 + number2
+    # Subtraction
     elif operation == '-':
         return number1 - number2
+    # Multiplication 
     elif operation == '*':
         return number1 * number2
+    # Power
     elif operation == '**':
         return number1 ** number2
+    # Mod
     elif operation == '%':
         return number1 % number2
+    # Floor division
     elif operation == '//':
-        return number1 // number2  
+        return number1 // number2
+    # Division  
     elif operation == '/':
         try:
             return number1 / number2
@@ -46,8 +52,8 @@ def format_decimal_numbers(result_value):
 def get_first_number():
     while True:
         try:
-            return float(input('Enter first number: '))
-        except ValueError:
+            return float(Fraction(input('Enter first number: ')))
+        except TypeError:
             print('Wrong input, please re-enter.')
             continue
 
@@ -59,11 +65,11 @@ def get_operation():
 def get_second_number():
     while True:
         try:
-            return float(input('Enter second number: '))
-        except ValueError:
+            return float(Fraction(input('Enter second number: ')))
+        except TypeError:
             print('Wrong input, please re-enter.')
             continue
-
+            
 # Once the result is printed in terminal ask user if wants to continue
 def recalculate():
     choice = input('Would you like to continue? (Y for Yes / N for No): ')
