@@ -1,7 +1,6 @@
-# The Simplest Calculator 
+# A Two Input Calculator 
 
-I used all the operators that python has to offer and made a calculator that works with a terminal. 
-(Only works with two number inputs.)
+One of my many useless side projects. Who needs a calculator that supports more than two inputs anyway? 
 
 ## Usage 
 
