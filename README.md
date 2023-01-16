@@ -4,7 +4,9 @@ One of my many useless side projects. Who needs a calculator that supports more 
 
 ## Usage 
 
+```
 python twoinputcalculator.py
+```
 
 It will then ask you to for the first number, then operation, and finally the second number. 
 
