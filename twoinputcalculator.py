@@ -1,21 +1,25 @@
-# Accept fractions written as 1/2 and get the gcd to add
-# Return string on how to read it?
-
 from fractions import Fraction
+from typing import Union
 
+def calculation_of_two_numbers(number1: float,  operation: str, number2: float) -> Union[float, str]:
+    """ Compute the value using the two input values and the operation given by the user.
 
-def calculation_of_two_numbers(number1,  operation, number2):
+    :param float number1: first input.
+    :param str operation: the math operation.
+    :param float number2: second input.
+    :return: Union[float, str]: the computed value as a string or float.
+    """
     # Addition
     if operation == '+':
         return number1 + number2
     # Subtraction
     elif operation == '-':
         return number1 - number2
-    # Multiplication 
+    # Multiplication
     elif operation == '*':
         return number1 * number2
     # Power
-    elif operation == '**':
+    elif operation == '**' or operation == '^':
         return number1 ** number2
     # Mod
     elif operation == '%':
@@ -23,64 +27,59 @@ def calculation_of_two_numbers(number1,  operation, number2):
     # Floor division
     elif operation == '//':
         return number1 // number2
-    # Division  
+    # Division
     elif operation == '/':
-        try:
-            return number1 / number2
-        # checks if divides by 0
-        except ZeroDivisionError:
-            result_value = 'Undefined'
-            print(result_value)
-            recalculate()
-            exit()
+        if number2 == 0:
+            return "Undefined"
+        return number1 / number2
     else:
         main()
 
+def format_decimal_numbers(result_value: float) -> None:
+    """ Print out the formatted result value from the computation.
 
-def format_decimal_numbers(result_value):
-    # add commas to each 3 digits
-    if (result_value >= 1000):
+    :param float: result_value
+    :return: None
+    """
+    if result_value == 'Undefined':
+        print(result_value)
+    elif (result_value >= 1_000):
         print('Result: {:,.0f}'.format(result_value))
-    # if it is an integer eg. 1.0 returns only whole number
     elif result_value.is_integer():
         print('Result: {:.0f}'.format(result_value))
-    # if not an integer then leaves the decimal
     else:
         print('Result: {:.3f}'.format(result_value))
 
+def get_first_number() -> float:
+    """Get the first numbre from user input.
 
-def get_first_number():
-    while True:
-        try:
-            return float(Fraction(input('Enter first number: ')))
-        except TypeError:
-            print('Wrong input, please re-enter.')
-            continue
+    :return: float: the first input.
+    """
+    return float(Fraction(input('Enter first number: ')))
 
+def get_operation() -> str:
+    """Get the operation being used to compute the two values.
 
-def get_operation():
+    :return: str: the math operation.
+    """
     return input('Enter the operation: +,-,*, ^ (**), %, //, or /: ')
 
+def get_second_number() -> float:
+    """Get the second number from user input.
 
-def get_second_number():
-    while True:
-        try:
-            return float(Fraction(input('Enter second number: ')))
-        except TypeError:
-            print('Wrong input, please re-enter.')
-            continue
-            
-# Once the result is printed in terminal ask user if wants to continue
-def recalculate():
+    :return: float: the second input.
+    """
+    return float(Fraction(input('Enter second number: ')))
+
+def recalculate() -> None:
+    """Prompt the user if they want to continue calculating more values."""
     choice = input('Would you like to continue? (Y for Yes / N for No): ')
     if choice.lower() == 'n':
         exit()
     elif choice.lower() == 'y':
         main()
-        exit()
     else:
         recalculate()
-
 
 def main():
     number1 = get_first_number()
@@ -89,7 +88,6 @@ def main():
     result_value = calculation_of_two_numbers(number1, operation, number2)
     format_decimal_numbers(result_value)
     recalculate()
-
 
 if __name__ == '__main__':
     main()
